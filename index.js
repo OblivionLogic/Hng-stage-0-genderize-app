@@ -12,12 +12,12 @@ app.get('/api/classify', async (req, res) => {
     let { name } = req.query;
 
     // validation gatekeeping...
-    if (!name || name.trim() === "") {
-        return res.status(400).json({ 
-            status: "error", 
-            message: "Missing or empty name parameter" 
-        });
-    }
+    if (!name || typeof name !== 'string') {
+    return res.status(400).json({ 
+        status: "error", 
+        message: "Missing or empty name parameter" 
+    });
+}
 
     // checking if name is actually a string and not just numbers
     if (typeof name !== 'string' || !isNaN(name)) {
